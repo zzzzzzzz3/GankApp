@@ -12,9 +12,13 @@ import java.io.Serializable;
  * 修改备注：
  */
 public class MeiziResult implements Serializable{
-    private static final String TAG = "MeiziResult";
-    public String desc;
-    public String url;
+
+    private String desc;
+
+    private String url;
+
+    private String who;
+
     public MeiziResult(){
 
     }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.activity.MeiziActivity;
 import com.example.msi.myapp.activity.NewsActivity;
@@ -46,7 +47,7 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final int j = position;
-        //holder.imageView.setImageDrawable();
+        Glide.with(this.context).load(datas.get(j).getUrl()).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +70,8 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
             super(itemView);
             cardView = (CardView) itemView;
             imageView = (ImageView) itemView.findViewById(R.id.meizi_image);
+        }
+        public void setImageView(){
         }
     }
 }

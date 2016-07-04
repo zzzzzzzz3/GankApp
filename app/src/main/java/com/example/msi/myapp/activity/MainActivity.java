@@ -17,6 +17,8 @@ import com.example.msi.myapp.Interface.DoSth;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.fragment.MeiziFragment;
 import com.example.msi.myapp.fragment.MyFragment;
+import com.example.msi.myapp.module.MeiziResult;
+import com.example.msi.myapp.presenter.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements DoSth {
     private android.app.FragmentTransaction fragmentTransaction;
 
     private List<Fragment> fragments;
+    private Bundle bundle;
+    private Data data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,25 +100,34 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             @Override
             public void onSelected(int index, Object tag) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
+                data =new Data();
 
-                Bundle bundle = new Bundle();
+                bundle = new Bundle();
                 bundle.putInt("index",index);
                 bundle.putString("content","hello"+index);
-                fragments.get(index).setArguments(bundle);
+
                 //跳转到相应的页面
                 switch (index){
                     case 0:
                         toolbar.setTitle("android");
+                        fragments.get(index).setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment,fragments.get(index));
                         fragmentTransaction.commit();
                         break;
                     case 1:
                         toolbar.setTitle("ios");
+                        fragments.get(index).setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment,fragments.get(index));
                         fragmentTransaction.commit();
                         break;
                     case 2:
                         toolbar.setTitle("妹纸");
+                        List<MeiziResult> results = data.getData();
+                        for (int i = 0; i <results.size() ; i++) {
+                            bundle.putSerializable("meizi"+i,results.get(i));
+                        }
+                        bundle.putInt("size",results.size());
+                        fragments.get(index).setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment,fragments.get(index));
                         fragmentTransaction.commit();
                         break;

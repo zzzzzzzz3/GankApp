@@ -45,14 +45,10 @@ public class MeiziFragment extends Fragment implements NsRefreshLayout.NsRefresh
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        meiziResults = new ArrayList<MeiziResult>();
-        for (int i = 0; i <10 ; i++) {
-            MeiziResult meiziresult = new MeiziResult();
-            meiziresult.setUrl(getArguments().getInt("index")+"");
-            meiziresult.setDesc(getArguments().getString("content"));
-            //Log.d(TAG,meiziresult.desc);
-            meiziResults.add(meiziresult);
+        for (int i = 0; i < getArguments().getInt("size"); i++) {
+            meiziResults.add((MeiziResult) getArguments().getSerializable("meizi"+i));
         }
+
     }
 
     @Nullable
