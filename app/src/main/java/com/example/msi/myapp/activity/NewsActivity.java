@@ -1,6 +1,5 @@
-package com.example.msi.myapp;
+package com.example.msi.myapp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -8,19 +7,18 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.msi.myapp.adapter.PagerFragmentAdapter;
+import com.example.msi.myapp.R;
+import com.example.msi.myapp.module.News;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 
 /**
  * 文 件 名: NewsActivity

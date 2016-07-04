@@ -1,6 +1,5 @@
-package com.example.msi.myapp;
+package com.example.msi.myapp.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.example.msi.myapp.Interface.DoSth;
+import com.example.msi.myapp.adapter.MyRecycleAdapter;
+import com.example.msi.myapp.R;
+import com.example.msi.myapp.module.News;
 import com.xlf.nrl.NsRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import me.majiajie.pagerbottomtabstrip.Controller;
 
 /**
  * 文 件 名: MyFragment
@@ -40,7 +40,7 @@ public class MyFragment extends Fragment implements NsRefreshLayout.NsRefreshLay
     public MyFragment(){
         datas = new ArrayList<News>();
         for (int i = 0; i <10 ; i++) {
-            News news = new News("HELLO","this is "+i+" news",R.drawable.photo);
+            News news = new News("HELLO","this is "+i+" news", R.drawable.photo);
             datas.add(news);
         }
     }

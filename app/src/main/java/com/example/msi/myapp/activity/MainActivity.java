@@ -1,7 +1,6 @@
-package com.example.msi.myapp;
+package com.example.msi.myapp.activity;
 
 import android.app.Fragment;
-import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
@@ -12,8 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
+
+import com.example.msi.myapp.Interface.DoSth;
+import com.example.msi.myapp.R;
+import com.example.msi.myapp.fragment.MeiziFragment;
+import com.example.msi.myapp.fragment.MyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,7 @@ import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 
-public class MainActivity extends AppCompatActivity implements DoSth{
+public class MainActivity extends AppCompatActivity implements DoSth {
 
     //绑定组件
     @Bind(R.id.dl_main)
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements DoSth{
     private Controller controller;
     private android.app.FragmentTransaction fragmentTransaction;
 
-    private List<MyFragment> fragments;
+    private List<Fragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements DoSth{
         //将drawlayout和toolbar绑定使得navigaView能被打开
         drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawopen,R.string.drawclose);
         drawerToggle.syncState();
-        drawerLayout.setDrawerListener(drawerToggle);
+        drawerLayout.addDrawerListener(drawerToggle);
         //设置导航栏按钮监听
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements DoSth{
                 Bundle bundle = new Bundle();
                 bundle.putInt("index",index);
                 bundle.putString("content","hello"+index);
-                //fragments.get(index).setArguments(bundle);
+                fragments.get(index).setArguments(bundle);
                 //跳转到相应的页面
                 switch (index){
                     case 0:
@@ -127,11 +130,10 @@ public class MainActivity extends AppCompatActivity implements DoSth{
     }
 
     private void initFragments() {
-        fragments = new ArrayList<MyFragment>();
-        for (int i = 0; i <3 ; i++) {
-            MyFragment fragment = new MyFragment();
-            fragments.add(fragment);
-        }
+        fragments = new ArrayList<Fragment>();
+        fragments.add(new MyFragment());
+        fragments.add(new MyFragment());
+        fragments.add(new MeiziFragment());
     }
 
     //从主页面直接返回桌面

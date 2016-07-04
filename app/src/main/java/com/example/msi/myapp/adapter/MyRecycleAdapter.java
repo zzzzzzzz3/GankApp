@@ -1,4 +1,4 @@
-package com.example.msi.myapp;
+package com.example.msi.myapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.msi.myapp.activity.NewsActivity;
+import com.example.msi.myapp.R;
+import com.example.msi.myapp.module.News;
 
 import java.util.List;
 

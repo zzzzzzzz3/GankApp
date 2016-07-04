@@ -1,8 +1,10 @@
-package com.example.msi.myapp;
+package com.example.msi.myapp.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.msi.myapp.fragment.PagerFragment;
 
 import java.util.List;
 
