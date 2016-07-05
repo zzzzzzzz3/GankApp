@@ -34,10 +34,7 @@ import android.util.Log;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
-/**
- * The author is lsjwzh(MaterialLoadingProgressBar) link{https://github.com/lsjwzh/MaterialLoadingProgressBar},
- * I did some slight modifications
- */
+
 public class CircleProgressBar extends ImageView {
 
     private static final int KEY_SHADOW_COLOR = 0x1E000000;

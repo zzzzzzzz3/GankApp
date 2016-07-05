@@ -3,13 +3,17 @@ package com.example.msi.myapp.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.os.ParcelableCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -20,6 +24,8 @@ import com.example.msi.myapp.fragment.MyFragment;
 import com.example.msi.myapp.module.MeiziResult;
 import com.example.msi.myapp.presenter.Data;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +35,7 @@ import me.majiajie.pagerbottomtabstrip.Controller;
 import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
+import rx.Subscriber;
 
 public class MainActivity extends AppCompatActivity implements DoSth {
 
@@ -48,12 +55,13 @@ public class MainActivity extends AppCompatActivity implements DoSth {
 
     private List<Fragment> fragments;
     private Bundle bundle;
-    private Data data;
+    Subscriber<List<MeiziResult>> subscriber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //初始化绑定的组件
         ButterKnife.bind(this);
         //设置toolbar
@@ -100,8 +108,6 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             @Override
             public void onSelected(int index, Object tag) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
-                data =new Data();
-
                 bundle = new Bundle();
                 bundle.putInt("index",index);
                 bundle.putString("content","hello"+index);
@@ -122,12 +128,6 @@ public class MainActivity extends AppCompatActivity implements DoSth {
                         break;
                     case 2:
                         toolbar.setTitle("妹纸");
-                        List<MeiziResult> results = data.getData();
-                        for (int i = 0; i <results.size() ; i++) {
-                            bundle.putSerializable("meizi"+i,results.get(i));
-                        }
-                        bundle.putInt("size",results.size());
-                        fragments.get(index).setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment,fragments.get(index));
                         fragmentTransaction.commit();
                         break;
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements DoSth {
         fragments.add(new MyFragment());
         fragments.add(new MyFragment());
         fragments.add(new MeiziFragment());
+
     }
 
     //从主页面直接返回桌面

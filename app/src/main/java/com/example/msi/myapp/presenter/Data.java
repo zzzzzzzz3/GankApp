@@ -20,32 +20,18 @@ import rx.schedulers.Schedulers;
  * 修改备注：
  */
 public class Data {
-    private List<MeiziResult> data;
-    public Data(){
+    private static Data INSTANCE = new Data();
+    private Data(){
 
     }
-
-    public List<MeiziResult> getData(){
-        NetworkUtil.getMeiziApi().getMeizi(20,1)
+    public static Data getINSTANCE(){
+        return INSTANCE;
+    }
+    public void getData(Subscriber<List<MeiziResult>> subscriber,int count,int page){
+        NetworkUtil.getINSTANCE().getMeiziApi().getMeizi(count,page)
                 .map(MeiziResultsMapper.getINSTANCE())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<MeiziResult>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(List<MeiziResult> meiziResults) {
-                        data = meiziResults;
-                    }
-                });
-        return data;
+                .subscribe(subscriber);
     }
 }

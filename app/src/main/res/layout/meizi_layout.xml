@@ -21,7 +21,7 @@
             android:id="@+id/detail_meizi"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:scaleType="centerCrop"/>
     </android.support.v7.widget.CardView>
     <TextView
         android:id="@+id/image_desc"

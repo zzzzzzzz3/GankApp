@@ -2,6 +2,8 @@ package com.example.msi.myapp.Utils;
 
 import com.example.msi.myapp.Interface.API.MeiziApi;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
@@ -21,14 +23,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkUtil {
     private static MeiziApi meiziApi;
     private static final String GAMKIO = "http://gank.io/api/";
-    private static OkHttpClient okHttpClient = new OkHttpClient();
-    private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
-    private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
+    private static OkHttpClient.Builder builder;
+    private static Converter.Factory gsonConverterFactory ;
+    private static CallAdapter.Factory rxJavaCallAdapterFactory ;
+    private static NetworkUtil INSTANCE = new NetworkUtil();
+    private NetworkUtil(){
+        builder =new OkHttpClient.Builder();
+        builder.connectTimeout(5, TimeUnit.SECONDS);
+        gsonConverterFactory = GsonConverterFactory.create();
+        rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
+    }
 
+    public static NetworkUtil getINSTANCE(){
+        return INSTANCE;
+    }
     public static MeiziApi getMeiziApi() {
         if (null == meiziApi) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .client(okHttpClient)
+                    .client(builder.build())
                     .baseUrl("http://gank.io/api/")
                     .addConverterFactory(gsonConverterFactory)
                     .addCallAdapterFactory(rxJavaCallAdapterFactory)

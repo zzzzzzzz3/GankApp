@@ -8,11 +8,7 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/**
- * Created by xiaolifan on 2015/12/21.
- * QQ: 1147904198
- * Email: xiao_lifan@163.com
- */
+
 public class LoadView extends LinearLayout {
 
     private static final int DEFAULT_CIRCLE_SIZE = 42;

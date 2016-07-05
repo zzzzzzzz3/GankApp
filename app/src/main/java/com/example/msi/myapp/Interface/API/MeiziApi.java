@@ -16,6 +16,6 @@ import rx.Observable;
  * 修改备注：
  */
 public interface MeiziApi {
-    @GET("\"data/福利/{number}/{page}\"")
+    @GET("data/福利/{number}/{page}")
     Observable<MeiziResultS> getMeizi(@Path("number") int number, @Path("page") int page);
 }

@@ -15,8 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.module.MeiziResult;
+
+import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,10 +66,11 @@ public class MeiziActivity extends AppCompatActivity {
                 finish();
             }
         });
-        toolbar.setTitle("meizi");
         Intent intent = getIntent();
-        MeiziResult meiziResult = (MeiziResult) intent.getExtras().get("meizi");
+        MeiziResult meiziResult = (MeiziResult) intent.getSerializableExtra("meizi");
+        Glide.with(this).load(meiziResult.getUrl()).into(imageView);
         textView.setText(meiziResult.getDesc());
+        getSupportActionBar().setTitle(meiziResult.getWho());
     }
     @OnClick(R.id.share_meizi_button)
     void share(){

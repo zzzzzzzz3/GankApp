@@ -18,11 +18,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 
-/**
- * Created by xiaolifan on 2015/12/21.
- * QQ: 1147904198
- * Email: xiao_lifan@163.com
- */
+
 public class NsRefreshLayout extends FrameLayout {
 
     private static final int LOADING_VIEW_FINAL_HEIGHT_DP = 80;

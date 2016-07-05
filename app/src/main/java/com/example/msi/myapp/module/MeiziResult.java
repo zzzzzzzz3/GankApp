@@ -1,5 +1,8 @@
 package com.example.msi.myapp.module;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelClass;
+
 import java.io.Serializable;
 
 /**
@@ -11,6 +14,7 @@ import java.io.Serializable;
  * 修改时间：
  * 修改备注：
  */
+
 public class MeiziResult implements Serializable{
 
     private String desc;
@@ -41,5 +45,9 @@ public class MeiziResult implements Serializable{
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getWho() {
+        return who;
     }
 }

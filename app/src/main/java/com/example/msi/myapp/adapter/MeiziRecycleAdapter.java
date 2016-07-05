@@ -16,6 +16,8 @@ import com.example.msi.myapp.activity.MeiziActivity;
 import com.example.msi.myapp.activity.NewsActivity;
 import com.example.msi.myapp.module.MeiziResult;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 /**
@@ -52,7 +54,7 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MeiziActivity.class);
-                intent.putExtra("meizi", datas.get(j));
+                intent.putExtra("meizi",  datas.get(j));
                 context.startActivity(intent);
             }
         });
@@ -60,7 +62,13 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        //Log.d("datasize",datas.size()+"");
+        return datas==null?0:datas.size();
+    }
+
+    public void addItem(List<MeiziResult> datas){
+        this.datas = datas;
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
