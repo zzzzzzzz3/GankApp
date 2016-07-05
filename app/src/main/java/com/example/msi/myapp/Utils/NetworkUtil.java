@@ -1,5 +1,6 @@
 package com.example.msi.myapp.Utils;
 
+import com.example.msi.myapp.Interface.API.AndroidApi;
 import com.example.msi.myapp.Interface.API.MeiziApi;
 
 import java.util.concurrent.TimeUnit;
@@ -24,12 +25,16 @@ public class NetworkUtil {
     private static MeiziApi meiziApi;
     private static final String GAMKIO = "http://gank.io/api/";
     private static OkHttpClient.Builder builder;
+    private static OkHttpClient client;
     private static Converter.Factory gsonConverterFactory ;
     private static CallAdapter.Factory rxJavaCallAdapterFactory ;
     private static NetworkUtil INSTANCE = new NetworkUtil();
+    private static AndroidApi androidApi;
+
     private NetworkUtil(){
         builder =new OkHttpClient.Builder();
         builder.connectTimeout(5, TimeUnit.SECONDS);
+        client = builder.build();
         gsonConverterFactory = GsonConverterFactory.create();
         rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
     }
@@ -40,14 +45,26 @@ public class NetworkUtil {
     public static MeiziApi getMeiziApi() {
         if (null == meiziApi) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .client(builder.build())
-                    .baseUrl("http://gank.io/api/")
+                    .client(client)
+                    .baseUrl(GAMKIO)
                     .addConverterFactory(gsonConverterFactory)
                     .addCallAdapterFactory(rxJavaCallAdapterFactory)
                     .build();
             meiziApi = retrofit.create(MeiziApi.class);
         }
         return meiziApi;
+    }
+    public static AndroidApi getAndroidApi(){
+        if (null == androidApi){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(client)
+                    .baseUrl(GAMKIO)
+                    .addCallAdapterFactory(rxJavaCallAdapterFactory)
+                    .addConverterFactory(gsonConverterFactory)
+                    .build();
+            androidApi = retrofit.create(AndroidApi.class);
+        }
+        return androidApi;
     }
 
 }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.msi.myapp.Interface.DoSth;
 import com.example.msi.myapp.R;
+import com.example.msi.myapp.fragment.AndroidFragment;
 import com.example.msi.myapp.fragment.MeiziFragment;
 import com.example.msi.myapp.fragment.MyFragment;
 import com.example.msi.myapp.module.MeiziResult;
@@ -116,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements DoSth {
                 switch (index){
                     case 0:
                         toolbar.setTitle("android");
-                        fragments.get(index).setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment,fragments.get(index));
                         fragmentTransaction.commit();
                         break;
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements DoSth {
 
     private void initFragments() {
         fragments = new ArrayList<Fragment>();
-        fragments.add(new MyFragment());
+        fragments.add(new AndroidFragment());
         fragments.add(new MyFragment());
         fragments.add(new MeiziFragment());
 

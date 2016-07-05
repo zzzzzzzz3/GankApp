@@ -1,7 +1,7 @@
 package com.example.msi.myapp.Utils;
 
 import com.example.msi.myapp.module.MeiziResult;
-import com.example.msi.myapp.module.MeiziResultS;
+import com.example.msi.myapp.module.Results;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import rx.functions.Func1;
  * 修改时间：
  * 修改备注：
  */
-public class MeiziResultsMapper implements Func1<MeiziResultS,List<MeiziResult>> {
+public class MeiziResultsMapper implements Func1<Results<List<MeiziResult>>,List<MeiziResult>> {
     private static MeiziResultsMapper INSTANCE = new MeiziResultsMapper();
 
     private MeiziResultsMapper(){
@@ -28,8 +28,8 @@ public class MeiziResultsMapper implements Func1<MeiziResultS,List<MeiziResult>>
     }
 
     @Override
-    public List<MeiziResult> call(MeiziResultS meiziResultS) {
+    public List<MeiziResult> call(Results<List<MeiziResult>> meiziResultS) {
 
-        return meiziResultS.meiziResults;
+        return meiziResultS.results;
     }
 }

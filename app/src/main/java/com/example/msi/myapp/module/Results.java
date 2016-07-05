@@ -13,8 +13,8 @@ import java.util.List;
  * 修改时间：
  * 修改备注：
  */
-public class MeiziResultS {
+public class Results<T> {
     public boolean error;
     @SerializedName("results")
-    public List<MeiziResult> meiziResults;
+    public T results;
 }
