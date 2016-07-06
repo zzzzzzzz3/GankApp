@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.activity.MeiziActivity;
 import com.example.msi.myapp.activity.NewsActivity;
@@ -48,7 +49,10 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final int j = position;
-        Glide.with(this.context).load(datas.get(j).getUrl()).into(holder.imageView);
+        Glide.with(this.context)
+                .load(datas.get(j).getUrl())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)//仅缓存原图
+                .into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements DoSth {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //初始化绑定的组件
         ButterKnife.bind(this);
         //设置toolbar
