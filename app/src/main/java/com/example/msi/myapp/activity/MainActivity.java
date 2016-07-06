@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             @Override
             public void onSelected(int index, Object tag) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                //fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 //跳转到相应的页面
                 switch (index){
                     case 0:

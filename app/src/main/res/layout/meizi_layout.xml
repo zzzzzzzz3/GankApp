@@ -44,29 +44,29 @@
             android:id="@+id/like_meizi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fafafa"
-            android:textSize="16sp"
-            android:textColor="@color/colorAccent"
+            android:background="@drawable/bg_btn_selector"
+            android:textColor="@color/text_btn_selector"
             android:text="喜欢"
+            android:textSize="16sp"
             />
         <Button
             android:id="@+id/share_meizi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fafafa"
             android:layout_marginLeft="20dp"
             android:textSize="16sp"
-            android:textColor="@color/colorAccent"
+            android:background="@drawable/bg_btn_selector"
+            android:textColor="@color/text_btn_selector"
             android:text="分享"
             />
         <Button
             android:id="@+id/load_meizi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fafafa"
             android:layout_marginLeft="20dp"
             android:textSize="16sp"
-            android:textColor="@color/colorAccent"
+            android:background="@drawable/bg_btn_selector"
+            android:textColor="@color/text_btn_selector"
             android:text="下载"
             />
     </LinearLayout>

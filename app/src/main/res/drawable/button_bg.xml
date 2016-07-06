@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  -->
+    <item android:state_accelerated="true"></item>
+    <!-- 激活状态 -->
+    <item android:state_activated="true"></item>
+    <!--  -->
+    <item android:state_active="true"></item>
+    <!-- 勾选可用状态 -->
+    <item android:state_checkable="true"></item>
+    <!-- 勾选状态 -->
+    <item android:state_checked="true"></item>
+    <!--  -->
+    <item android:state_drag_hovered="true"></item>
+    <!-- 可用状态 -->
+    <item android:state_enabled="true"></item>
+    <!--  -->
+    <item android:state_first="true"></item>
+    <!-- 获得焦点状态 -->
+    <item android:state_focused="true"></item>
+    <!-- 鼠标在上面滑动 -->
+    <item android:state_hovered="true"></item>
+    <!--  -->
+    <item android:state_last="true"></item>
+    <!--  -->
+    <item android:state_middle="true"></item>
+    <!-- 按压状态 -->
+    <item android:state_pressed="true"></item>
+    <!-- 选中状态 -->
+    <item android:state_selected="true"></item>
+    <!--  -->
+    <item android:state_single="true"></item>
+    <!-- 当前窗口获得焦点 -->
+    <item android:state_window_focused="true"></item>
+
+</selector>
