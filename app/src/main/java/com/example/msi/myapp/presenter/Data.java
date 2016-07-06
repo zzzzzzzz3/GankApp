@@ -1,9 +1,11 @@
 package com.example.msi.myapp.presenter;
 
 import com.example.msi.myapp.Utils.AndroidResultsMapper;
+import com.example.msi.myapp.Utils.IosResultsMapper;
 import com.example.msi.myapp.Utils.MeiziResultsMapper;
 import com.example.msi.myapp.Utils.NetworkUtil;
 import com.example.msi.myapp.module.AndroidResult;
+import com.example.msi.myapp.module.IosResult;
 import com.example.msi.myapp.module.MeiziResult;
 
 import java.util.List;
@@ -39,6 +41,13 @@ public class Data {
     public void getAndroidData(Subscriber<List<AndroidResult>> subscriber,int count,int page){
         NetworkUtil.getINSTANCE().getAndroidApi().getAndroidResults(count,page)
                 .map(AndroidResultsMapper.getInstance())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+    public void getIosData(Subscriber<List<IosResult>> subscriber, int count, int page){
+        NetworkUtil.getINSTANCE().getIosApi().getIosResults(count,page)
+                .map(IosResultsMapper.getInstance())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

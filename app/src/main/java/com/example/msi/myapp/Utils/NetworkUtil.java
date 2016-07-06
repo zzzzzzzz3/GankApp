@@ -1,6 +1,7 @@
 package com.example.msi.myapp.Utils;
 
 import com.example.msi.myapp.Interface.API.AndroidApi;
+import com.example.msi.myapp.Interface.API.IosApi;
 import com.example.msi.myapp.Interface.API.MeiziApi;
 
 import java.util.concurrent.TimeUnit;
@@ -30,6 +31,7 @@ public class NetworkUtil {
     private static CallAdapter.Factory rxJavaCallAdapterFactory ;
     private static NetworkUtil INSTANCE = new NetworkUtil();
     private static AndroidApi androidApi;
+    private static IosApi iosApi;
 
     private NetworkUtil(){
         builder =new OkHttpClient.Builder();
@@ -65,6 +67,18 @@ public class NetworkUtil {
             androidApi = retrofit.create(AndroidApi.class);
         }
         return androidApi;
+    }
+    public static IosApi getIosApi(){
+        if (null == iosApi){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(client)
+                    .baseUrl(GAMKIO)
+                    .addCallAdapterFactory(rxJavaCallAdapterFactory)
+                    .addConverterFactory(gsonConverterFactory)
+                    .build();
+            iosApi = retrofit.create(IosApi.class);
+        }
+        return iosApi;
     }
 
 }

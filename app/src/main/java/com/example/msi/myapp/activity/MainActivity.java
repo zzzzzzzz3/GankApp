@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.msi.myapp.Interface.DoSth;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.fragment.AndroidFragment;
+import com.example.msi.myapp.fragment.IosFragment;
 import com.example.msi.myapp.fragment.MeiziFragment;
 import com.example.msi.myapp.fragment.MyFragment;
 import com.example.msi.myapp.module.MeiziResult;
@@ -110,10 +111,6 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             @Override
             public void onSelected(int index, Object tag) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
-                bundle = new Bundle();
-                bundle.putInt("index",index);
-                bundle.putString("content","hello"+index);
-
                 //跳转到相应的页面
                 switch (index){
                     case 0:
@@ -123,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements DoSth {
                         break;
                     case 1:
                         toolbar.setTitle("ios");
-                        fragments.get(index).setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment,fragments.get(index));
                         fragmentTransaction.commit();
                         break;
@@ -146,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements DoSth {
     private void initFragments() {
         fragments = new ArrayList<Fragment>();
         fragments.add(new AndroidFragment());
-        fragments.add(new MyFragment());
+        fragments.add(new IosFragment());
         fragments.add(new MeiziFragment());
 
     }
