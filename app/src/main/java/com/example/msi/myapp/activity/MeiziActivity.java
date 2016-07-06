@@ -43,11 +43,11 @@ public class MeiziActivity extends AppCompatActivity {
     @Bind(R.id.image_desc)
     TextView textView;
     @Bind(R.id.like_meizi_button)
-    ImageButton likeButton;
+    Button likeButton;
     @Bind(R.id.share_meizi_button)
-    ImageButton shareButton;
+    Button shareButton;
     @Bind(R.id.load_meizi_button)
-    ImageButton loadButton;
+    Button loadButton;
     @Bind(R.id.toolbar_meizi)
     Toolbar toolbar;
 

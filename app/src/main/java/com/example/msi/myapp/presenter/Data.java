@@ -1,5 +1,7 @@
 package com.example.msi.myapp.presenter;
 
+import android.util.Log;
+
 import com.example.msi.myapp.Utils.AndroidResultsMapper;
 import com.example.msi.myapp.Utils.IosResultsMapper;
 import com.example.msi.myapp.Utils.MeiziResultsMapper;
@@ -11,6 +13,7 @@ import com.example.msi.myapp.module.MeiziResult;
 import java.util.List;
 
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -31,25 +34,28 @@ public class Data {
     public static Data getINSTANCE(){
         return INSTANCE;
     }
-    public void getData(Subscriber<List<MeiziResult>> subscriber,int count,int page){
-        NetworkUtil.getINSTANCE().getMeiziApi().getMeizi(count,page)
+    public Subscription getData(Subscriber<List<MeiziResult>> subscriber,int count,int page){
+        Subscription subscription =NetworkUtil.getINSTANCE().getMeiziApi().getMeizi(count,page)
                 .map(MeiziResultsMapper.getINSTANCE())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
+        return subscription;
     }
-    public void getAndroidData(Subscriber<List<AndroidResult>> subscriber,int count,int page){
-        NetworkUtil.getINSTANCE().getAndroidApi().getAndroidResults(count,page)
+    public Subscription getAndroidData(Subscriber<List<AndroidResult>> subscriber,int count,int page){
+        Subscription subscription = NetworkUtil.getINSTANCE().getAndroidApi().getAndroidResults(count,page)
                 .map(AndroidResultsMapper.getInstance())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
+        return subscriber;
     }
-    public void getIosData(Subscriber<List<IosResult>> subscriber, int count, int page){
-        NetworkUtil.getINSTANCE().getIosApi().getIosResults(count,page)
+    public Subscription getIosData(Subscriber<List<IosResult>> subscriber, int count, int page){
+        Subscription subscription = NetworkUtil.getINSTANCE().getIosApi().getIosResults(count,page)
                 .map(IosResultsMapper.getInstance())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
+        return subscription;
     }
 }

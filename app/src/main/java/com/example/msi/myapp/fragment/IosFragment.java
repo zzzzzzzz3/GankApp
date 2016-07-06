@@ -21,6 +21,7 @@ import com.xlf.nrl.NsRefreshLayout;
 import java.util.List;
 
 import rx.Subscriber;
+import rx.Subscription;
 
 /**
  * 文 件 名: AndroidFragment
@@ -38,18 +39,17 @@ public class IosFragment extends Fragment implements NsRefreshLayout.NsRefreshLa
     private NsRefreshLayout nsRefreshLayout;
     private RecyclerView recyclerView;
     private IosRecycleAdapter adapter;
-    private Subscriber<List<IosResult>> subscriber;
+    private Subscription subscription;
     private List<IosResult> results;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        subscriber = new Subscriber<List<IosResult>>() {
+        Data.getINSTANCE().getIosData(new Subscriber<List<IosResult>>() {
             @Override
             public void onCompleted() {
-                adapter.addItem(results);
-                subscriber.unsubscribe();
+
             }
 
             @Override
@@ -60,10 +60,9 @@ public class IosFragment extends Fragment implements NsRefreshLayout.NsRefreshLa
             @Override
             public void onNext(List<IosResult> result) {
                 results = result;
-
+                adapter.addItem(results);
             }
-        };
-        Data.getINSTANCE().getIosData(subscriber,10,1);
+        },10,1);
     }
 
     @Nullable
@@ -93,21 +92,56 @@ public class IosFragment extends Fragment implements NsRefreshLayout.NsRefreshLa
 
     @Override
     public void onRefresh() {
-        nsRefreshLayout.postDelayed(new Runnable() {
+        unsubscribe();
+        subscription = Data.getINSTANCE().getIosData(new Subscriber<List<IosResult>>() {
             @Override
-            public void run() {
-                nsRefreshLayout.finishPullRefresh();
+            public void onCompleted() {
+            nsRefreshLayout.finishPullRefresh();
             }
-        },500);
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<IosResult> result) {
+                results = result;
+                adapter.addItem(results);
+            }
+        },adapter.getItemCount(),1);
     }
 
     @Override
     public void onLoadMore() {
-        nsRefreshLayout.postDelayed(new Runnable() {
+        unsubscribe();
+        subscription = Data.getINSTANCE().getIosData(new Subscriber<List<IosResult>>() {
             @Override
-            public void run() {
+            public void onCompleted() {
                 nsRefreshLayout.finishPullLoad();
             }
-        },500);
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<IosResult> result) {
+                results = result;
+                adapter.addItem(results);
+            }
+        },adapter.getItemCount()+10,1);
+    }
+    public void unsubscribe(){
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unsubscribe();
     }
 }

@@ -37,28 +37,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="right"
-        android:padding="5dp">
-        <ImageButton
+        android:gravity="center"
+        android:padding="5dp"
+        >
+        <Button
             android:id="@+id/like_meizi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:src="@mipmap/ic_launcher"
+            android:background="#fafafa"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:text="喜欢"
             />
-        <ImageButton
+        <Button
             android:id="@+id/share_meizi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#fafafa"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/ic_launcher"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:text="分享"
             />
-        <ImageButton
+        <Button
             android:id="@+id/load_meizi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#fafafa"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/ic_launcher"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:text="下载"
             />
     </LinearLayout>
 </RelativeLayout>

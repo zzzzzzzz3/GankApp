@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.xlf.nrl.NsRefreshLayout;
 import java.util.List;
 
 import rx.Subscriber;
+import rx.Subscription;
 
 /**
  * 文 件 名: AndroidFragment
@@ -36,18 +38,19 @@ public class AndroidFragment extends Fragment implements NsRefreshLayout.NsRefre
     private NsRefreshLayout nsRefreshLayout;
     private RecyclerView recyclerView;
     private AndroidRecycleAdapter adapter;
-    private Subscriber<List<AndroidResult>> subscriber;
     private List<AndroidResult> results;
+    private Subscription subscription;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        Log.d("CCCCCCCCC","loading");
         this.context = context;
-        subscriber = new Subscriber<List<AndroidResult>>() {
+
+        Data.getINSTANCE().getAndroidData(new Subscriber<List<AndroidResult>>() {
             @Override
             public void onCompleted() {
-                adapter.addItem(results);
-                subscriber.unsubscribe();
+
             }
 
             @Override
@@ -58,10 +61,9 @@ public class AndroidFragment extends Fragment implements NsRefreshLayout.NsRefre
             @Override
             public void onNext(List<AndroidResult> result) {
                 results = result;
-
+                adapter.addItem(results);
             }
-        };
-        Data.getINSTANCE().getAndroidData(subscriber,10,1);
+        },10,1);
     }
 
     @Nullable
@@ -91,21 +93,56 @@ public class AndroidFragment extends Fragment implements NsRefreshLayout.NsRefre
 
     @Override
     public void onRefresh() {
-        nsRefreshLayout.postDelayed(new Runnable() {
+        unsubscribe();
+        Data.getINSTANCE().getAndroidData(new Subscriber<List<AndroidResult>>() {
             @Override
-            public void run() {
+            public void onCompleted() {
                 nsRefreshLayout.finishPullRefresh();
             }
-        },500);
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<AndroidResult> result) {
+                results = result;
+                adapter.addItem(results);
+            }
+        },adapter.getItemCount(),1);
     }
 
     @Override
     public void onLoadMore() {
-        nsRefreshLayout.postDelayed(new Runnable() {
+        unsubscribe();
+        Data.getINSTANCE().getAndroidData(new Subscriber<List<AndroidResult>>() {
             @Override
-            public void run() {
+            public void onCompleted() {
                 nsRefreshLayout.finishPullLoad();
             }
-        },500);
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<AndroidResult> result) {
+                results = result;
+                adapter.addItem(results);
+            }
+        },adapter.getItemCount()+10,1);
+    }
+    public void unsubscribe(){
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unsubscribe();
     }
 }

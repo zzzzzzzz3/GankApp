@@ -1,5 +1,7 @@
 package com.example.msi.myapp.Utils;
 
+import android.util.Log;
+
 import com.example.msi.myapp.Interface.API.AndroidApi;
 import com.example.msi.myapp.Interface.API.IosApi;
 import com.example.msi.myapp.Interface.API.MeiziApi;
@@ -45,6 +47,7 @@ public class NetworkUtil {
         return INSTANCE;
     }
     public static MeiziApi getMeiziApi() {
+
         if (null == meiziApi) {
             Retrofit retrofit = new Retrofit.Builder()
                     .client(client)

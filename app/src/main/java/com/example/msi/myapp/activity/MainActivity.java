@@ -1,6 +1,7 @@
 package com.example.msi.myapp.activity;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Parcel;
@@ -111,21 +112,25 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             @Override
             public void onSelected(int index, Object tag) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 //跳转到相应的页面
                 switch (index){
                     case 0:
                         toolbar.setTitle("android");
-                        fragmentTransaction.replace(R.id.fragment,fragments.get(index));
+                        fragmentTransaction.replace(R.id.fragment,fragments.get(index))
+                        .addToBackStack(null);
                         fragmentTransaction.commit();
                         break;
                     case 1:
                         toolbar.setTitle("ios");
-                        fragmentTransaction.replace(R.id.fragment,fragments.get(index));
+                        fragmentTransaction.replace(R.id.fragment,fragments.get(index))
+                        .addToBackStack(null);
                         fragmentTransaction.commit();
                         break;
                     case 2:
                         toolbar.setTitle("妹纸");
-                        fragmentTransaction.replace(R.id.fragment,fragments.get(index));
+                        fragmentTransaction.replace(R.id.fragment,fragments.get(index))
+                        .addToBackStack(null);
                         fragmentTransaction.commit();
                         break;
                 }

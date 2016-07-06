@@ -37,7 +37,6 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
     public MeiziRecycleAdapter(Context context,List<MeiziResult> datas){
         this.context = context;
         this.datas = datas;
-
     }
 
     @Override

@@ -21,9 +21,11 @@ import com.xlf.nrl.NsRefreshLayout;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import rx.Subscriber;
+import rx.Subscription;
 
 /**
  * 文 件 名: MeiziFragment
@@ -39,34 +41,33 @@ public class MeiziFragment extends Fragment implements NsRefreshLayout.NsRefresh
 
 
     private Context context;
-    private List<MeiziResult> meiziResults;
     private NsRefreshLayout nsRefreshLayout;
-    private Subscriber<List<MeiziResult>> subscriber;
+    private Subscription subscription;
     private MeiziRecycleAdapter myRecycleAdapter;
+    private List<MeiziResult> meiziResults;
 
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
         this.context = context;
-        subscriber = new Subscriber<List<MeiziResult>>() {
+        subscription =Data.getINSTANCE().getData(new Subscriber<List<MeiziResult>>() {
             @Override
             public void onCompleted() {
-                subscriber.unsubscribe();
+
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d("123","error");
+
             }
 
             @Override
             public void onNext(List<MeiziResult> meiziResult) {
                 meiziResults = meiziResult;
-                Log.d("123",meiziResults.toString());
-                myRecycleAdapter.addItem(meiziResults);
+                myRecycleAdapter.addItem(meiziResult);
+
             }
-        };
-        Data.getINSTANCE().getData(subscriber,10,1);
+        },10,1);
     }
 
     @Nullable
@@ -97,22 +98,64 @@ public class MeiziFragment extends Fragment implements NsRefreshLayout.NsRefresh
 
     @Override
     public void onRefresh() {
-        myRecycleAdapter.notifyDataSetChanged();
-        nsRefreshLayout.postDelayed(new Runnable() {
+        unsubscribe();
+        //再次请求必须新建subscriber
+        subscription=Data.getINSTANCE().getData(new Subscriber<List<MeiziResult>>() {
             @Override
-            public void run() {
-                nsRefreshLayout.finishPullRefresh();
+            public void onCompleted() {
+
+                if (nsRefreshLayout!=null) {
+                    nsRefreshLayout.finishPullRefresh();
+                }
             }
-        },500);
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<MeiziResult> meiziResult) {
+                meiziResults = meiziResult;
+                myRecycleAdapter.addItem(meiziResults);
+            }
+        }, myRecycleAdapter.getItemCount(), 1);
+
+    }
+    public void unsubscribe(){
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unsubscribe();
     }
 
     @Override
     public void onLoadMore() {
-        nsRefreshLayout.postDelayed(new Runnable() {
+        subscription=Data.getINSTANCE().getData(new Subscriber<List<MeiziResult>>() {
             @Override
-            public void run() {
-                nsRefreshLayout.finishPullLoad();
+            public void onCompleted() {
+
+                if (nsRefreshLayout!=null) {
+                    nsRefreshLayout.finishPullLoad();
+                }
             }
-        },500);
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<MeiziResult> meiziResult) {
+                meiziResults = meiziResult;
+                myRecycleAdapter.addItem(meiziResults);
+            }
+        }, myRecycleAdapter.getItemCount()+10, 1);
     }
+
 }
