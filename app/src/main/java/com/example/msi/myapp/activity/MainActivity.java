@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.msi.myapp.Interface.DoSth;
 import com.example.msi.myapp.R;
+import com.example.msi.myapp.Utils.SaveImage;
 import com.example.msi.myapp.fragment.AndroidFragment;
 import com.example.msi.myapp.fragment.IosFragment;
 import com.example.msi.myapp.fragment.MeiziFragment;
@@ -81,14 +82,16 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_item_about:
-                        Snackbar.make(MainActivity.this.getCurrentFocus(),"hello",Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"about",Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.navigation_item_blog:
                         controller.setMessageNumber(0,6);
                         Toast.makeText(MainActivity.this,"blog",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_item_example:
-                        Toast.makeText(MainActivity.this,"example",Toast.LENGTH_SHORT).show();
+                        SaveImage.getINSTANCE().cleanImage(getApplicationContext());
+                        Snackbar.make(MainActivity.this.getCurrentFocus(),"图片已删除",Snackbar.LENGTH_SHORT).show();
                         break;
                 }
                 item.setChecked(true);

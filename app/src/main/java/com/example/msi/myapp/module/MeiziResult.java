@@ -23,6 +23,8 @@ public class MeiziResult implements Serializable{
 
     private String who;
 
+    private String _id;
+
     public MeiziResult(){
 
     }
@@ -49,5 +51,9 @@ public class MeiziResult implements Serializable{
 
     public String getWho() {
         return who;
+    }
+
+    public String get_id() {
+        return _id;
     }
 }

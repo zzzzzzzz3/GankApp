@@ -6,7 +6,7 @@
             <item
                 android:id="@+id/navigation_item_example"
                 android:icon="@mipmap/ic_launcher"
-                android:title="one" />
+                android:title="删除下载的图片" />
             <item
                 android:id="@+id/navigation_item_blog"
                 android:icon="@mipmap/ic_launcher"
