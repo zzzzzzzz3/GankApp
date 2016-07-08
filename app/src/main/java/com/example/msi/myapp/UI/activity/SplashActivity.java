@@ -1,4 +1,4 @@
-package com.example.msi.myapp.activity;
+package com.example.msi.myapp.UI.activity;
 
 
 import android.content.Intent;

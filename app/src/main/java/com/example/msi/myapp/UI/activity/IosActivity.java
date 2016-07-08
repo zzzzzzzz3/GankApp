@@ -1,7 +1,6 @@
-package com.example.msi.myapp.activity;
+package com.example.msi.myapp.UI.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,7 +11,6 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 
 import com.example.msi.myapp.R;
-import com.example.msi.myapp.module.AndroidResult;
 import com.example.msi.myapp.module.IosResult;
 
 import butterknife.Bind;

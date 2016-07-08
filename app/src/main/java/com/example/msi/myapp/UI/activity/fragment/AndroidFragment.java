@@ -1,4 +1,4 @@
-package com.example.msi.myapp.fragment;
+package com.example.msi.myapp.UI.activity.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.msi.myapp.R;
-import com.example.msi.myapp.adapter.AndroidRecycleAdapter;
+import com.example.msi.myapp.UI.activity.adapter.AndroidRecycleAdapter;
 import com.example.msi.myapp.module.AndroidResult;
 import com.example.msi.myapp.presenter.Data;
 import com.xlf.nrl.NsRefreshLayout;

@@ -1,4 +1,4 @@
-package com.example.msi.myapp.activity;
+package com.example.msi.myapp.UI.activity;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -6,14 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 

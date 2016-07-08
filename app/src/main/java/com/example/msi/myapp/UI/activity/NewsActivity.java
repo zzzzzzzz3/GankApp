@@ -1,4 +1,4 @@
-package com.example.msi.myapp.activity;
+package com.example.msi.myapp.UI.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.msi.myapp.adapter.PagerFragmentAdapter;
+import com.example.msi.myapp.UI.activity.adapter.PagerFragmentAdapter;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.module.News;
 

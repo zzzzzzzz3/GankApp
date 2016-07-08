@@ -1,20 +1,18 @@
-package com.example.msi.myapp.activity;
+package com.example.msi.myapp.UI.activity;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.os.ParcelableCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -22,14 +20,13 @@ import android.widget.Toast;
 import com.example.msi.myapp.Interface.DoSth;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.Utils.SaveImage;
-import com.example.msi.myapp.fragment.AndroidFragment;
-import com.example.msi.myapp.fragment.IosFragment;
-import com.example.msi.myapp.fragment.MeiziFragment;
-import com.example.msi.myapp.fragment.MyFragment;
+import com.example.msi.myapp.UI.activity.fragment.AndroidFragment;
+import com.example.msi.myapp.UI.activity.fragment.IosFragment;
+import com.example.msi.myapp.UI.activity.fragment.MeiziFragment;
 import com.example.msi.myapp.module.MeiziResult;
-import com.example.msi.myapp.presenter.Data;
-
-import org.parceler.Parcels;
+import com.ftinc.scoop.BindToppingStatus;
+import com.ftinc.scoop.Scoop;
+import com.ftinc.scoop.ui.ScoopSettingsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +38,7 @@ import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import rx.Subscriber;
-
+@BindToppingStatus(Toppings.PRIMARY_DARK)
 public class MainActivity extends AppCompatActivity implements DoSth {
 
     //绑定组件
@@ -64,12 +61,29 @@ public class MainActivity extends AppCompatActivity implements DoSth {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Scoop.waffleCone()
+                .addFlavor("Default", R.style.Theme_Scoop, true)
+                .addFlavor("Light", R.style.Theme_Scoop_Light)
+                .addDayNightFlavor("DayNight", R.style.Theme_Scoop_DayNight)
+                .addFlavor("Alternate 1", R.style.Theme_Scoop_Alt1)
+                .addFlavor("Alternate 2", R.style.Theme_Scoop_Alt2)
+                .addToppings(Toppings.getToppings())
+                .setSharedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
+                .initialize();
         super.onCreate(savedInstanceState);
+
+        // Apply Scoop to the activity
+        Scoop.getInstance().apply(this);
+
         setContentView(R.layout.activity_main);
 
 
         //初始化绑定的组件
         ButterKnife.bind(this);
+        //绑定需要换肤的组件
+        Scoop.sugarCone().bind(this);
+        Scoop.sugarCone().bind(this, Toppings.PRIMARY,toolbar)
+                .bindStatusBar(this, Toppings.PRIMARY_DARK);
         //设置toolbar
         setSupportActionBar(toolbar);
         //将drawlayout和toolbar绑定使得navigaView能被打开
@@ -82,16 +96,33 @@ public class MainActivity extends AppCompatActivity implements DoSth {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_item_about:
-                        Toast.makeText(MainActivity.this,"about",Toast.LENGTH_SHORT).show();
-
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("hello")
+                                .setMessage("this is my first app.")
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .show();
                         break;
                     case R.id.navigation_item_blog:
                         controller.setMessageNumber(0,6);
                         Toast.makeText(MainActivity.this,"blog",Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.navigation_item_example:
+                    case R.id.navigation_item_delete:
                         SaveImage.getINSTANCE().cleanImage(getApplicationContext());
                         Snackbar.make(MainActivity.this.getCurrentFocus(),"图片已删除",Snackbar.LENGTH_SHORT).show();
+                        break;
+                    case R.id.navigation_item_change_theme:
+                        Snackbar.make(MainActivity.this.getCurrentFocus(),"successed",Snackbar.LENGTH_SHORT).show();
                         break;
                 }
                 item.setChecked(true);
@@ -166,14 +197,37 @@ public class MainActivity extends AppCompatActivity implements DoSth {
     }
 
     @Override
+    protected void onDestroy() {
+        Scoop.sugarCone().unbind(this);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == 0){
+            recreate();
+        }
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu,menu);
         return true;
     }
-
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Scoop.getInstance().apply(this, menu);
+        return true;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Snackbar.make(getCurrentFocus(),"hello",Snackbar.LENGTH_SHORT).show();
+        if(item.getItemId() == R.id.toolbar_setting){
+            startActivityForResult(ScoopSettingsActivity.createIntent(this), 0);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

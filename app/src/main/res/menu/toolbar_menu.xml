@@ -4,33 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/titlebar_search"
+        android:id="@+id/toolbar_search"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="1"
         android:title="search"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="collapseActionView" />
     <item
-        android:id="@+id/titlebar_collect"
+        android:id="@+id/toolbar_collect"
         android:icon="@android:drawable/ic_dialog_email"
         android:orderInCategory="1"
         android:title="collect"
         app:showAsAction="collapseActionView" />
     <item
-        android:id="@+id/titlebar_setting"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:id="@+id/toolbar_setting"
+        android:icon="@drawable/ic_settings_black_24dp"
         android:orderInCategory="1"
         android:title="setting"
-        app:showAsAction="withText" />
+        app:showAsAction="ifRoom" />
     <item
 
         android:icon="@android:drawable/ic_menu_camera"
         android:orderInCategory="1"
         android:title="setting"
-        app:showAsAction="always" />
+        app:showAsAction="collapseActionView" />
     <item
 
         android:icon="@android:drawable/ic_menu_camera"
         android:orderInCategory="1"
         android:title="setting"
-        app:showAsAction="never" />
+        app:showAsAction="collapseActionView" />
 </menu>

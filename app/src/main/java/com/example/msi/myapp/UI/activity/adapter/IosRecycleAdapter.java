@@ -1,4 +1,4 @@
-package com.example.msi.myapp.adapter;
+package com.example.msi.myapp.UI.activity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.Utils.DateUtil;
-import com.example.msi.myapp.activity.AndroidActivity;
-import com.example.msi.myapp.activity.IosActivity;
-import com.example.msi.myapp.module.AndroidResult;
+import com.example.msi.myapp.UI.activity.IosActivity;
 import com.example.msi.myapp.module.IosResult;
 
 import java.text.ParseException;

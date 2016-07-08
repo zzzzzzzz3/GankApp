@@ -1,4 +1,4 @@
-package com.example.msi.myapp.fragment;
+package com.example.msi.myapp.UI.activity.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

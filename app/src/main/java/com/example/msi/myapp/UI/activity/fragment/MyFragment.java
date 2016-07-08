@@ -1,4 +1,4 @@
-package com.example.msi.myapp.fragment;
+package com.example.msi.myapp.UI.activity.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.msi.myapp.Interface.DoSth;
-import com.example.msi.myapp.adapter.MyRecycleAdapter;
+import com.example.msi.myapp.UI.activity.adapter.MyRecycleAdapter;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.module.News;
 import com.xlf.nrl.NsRefreshLayout;

@@ -1,11 +1,9 @@
-package com.example.msi.myapp.adapter;
+package com.example.msi.myapp.UI.activity.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +13,13 @@ import android.widget.TextView;
 
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.Utils.DateUtil;
-import com.example.msi.myapp.activity.AndroidActivity;
+import com.example.msi.myapp.UI.activity.AndroidActivity;
 import com.example.msi.myapp.module.AndroidResult;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

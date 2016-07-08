@@ -1,27 +1,22 @@
-package com.example.msi.myapp.fragment;
+package com.example.msi.myapp.UI.activity.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.msi.myapp.R;
-import com.example.msi.myapp.adapter.MeiziRecycleAdapter;
-import com.example.msi.myapp.adapter.MyRecycleAdapter;
+import com.example.msi.myapp.UI.activity.adapter.MeiziRecycleAdapter;
 import com.example.msi.myapp.module.MeiziResult;
 import com.example.msi.myapp.presenter.Data;
 import com.xlf.nrl.NsRefreshLayout;
 
-import org.parceler.Parcels;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import rx.Subscriber;
@@ -75,9 +70,9 @@ public class MeiziFragment extends Fragment implements NsRefreshLayout.NsRefresh
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         nsRefreshLayout = (NsRefreshLayout) inflater.inflate(R.layout.fragment_layout,container,false);
         RecyclerView recyclerView = (RecyclerView) nsRefreshLayout.findViewById(R.id.rv_test);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        GridLayoutManager layoutManager = new GridLayoutManager(context,2);
         myRecycleAdapter = new MeiziRecycleAdapter(context,meiziResults);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myRecycleAdapter);
         recyclerView.setHasFixedSize(true);
         //refreshview设置监听

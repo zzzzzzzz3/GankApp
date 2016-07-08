@@ -1,10 +1,9 @@
-package com.example.msi.myapp.adapter;
+package com.example.msi.myapp.UI.activity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.msi.myapp.R;
-import com.example.msi.myapp.activity.MeiziActivity;
-import com.example.msi.myapp.activity.NewsActivity;
+import com.example.msi.myapp.UI.activity.MeiziActivity;
 import com.example.msi.myapp.module.MeiziResult;
-
-import org.parceler.Parcels;
 
 import java.util.List;
 

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
     <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".activity.MainActivity">
+        tools:context=".UI.activity.MainActivity">
         <group android:checkableBehavior="single">
             <item
-                android:id="@+id/navigation_item_example"
+                android:id="@+id/navigation_item_change_theme"
+                android:icon="@mipmap/ic_launcher"
+                android:title="更换主题"
+                ></item>
+            <item
+                android:id="@+id/navigation_item_delete"
                 android:icon="@mipmap/ic_launcher"
                 android:title="删除下载的图片" />
             <item

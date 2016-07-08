@@ -41,4 +41,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'org.parceler:parceler-api:1.1.5'
     apt 'org.parceler:parceler:1.1.5'
+    compile 'com.52inc:scoops:0.3.0'
+    apt 'com.52inc:scoops-compiler:0.3.0'
 }
