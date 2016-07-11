@@ -61,15 +61,7 @@ public class MainActivity extends AppCompatActivity implements DoSth {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Scoop.waffleCone()
-                .addFlavor("Default", R.style.Theme_Scoop, true)
-                .addFlavor("Light", R.style.Theme_Scoop_Light)
-                .addDayNightFlavor("DayNight", R.style.Theme_Scoop_DayNight)
-                .addFlavor("Alternate 1", R.style.Theme_Scoop_Alt1)
-                .addFlavor("Alternate 2", R.style.Theme_Scoop_Alt2)
-                .addToppings(Toppings.getToppings())
-                .setSharedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
-                .initialize();
+
         super.onCreate(savedInstanceState);
 
         // Apply Scoop to the activity

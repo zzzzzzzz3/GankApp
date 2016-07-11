@@ -2,15 +2,23 @@ package com.example.msi.myapp.UI.activity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.msi.myapp.R;
 import com.example.msi.myapp.UI.activity.MeiziActivity;
 import com.example.msi.myapp.module.MeiziResult;
@@ -30,6 +38,7 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
     private static final String TAG = "MeiziRecycleAdapter";
     private List<MeiziResult> datas;
     private Context context;
+    private int itemHeight;
 
     public MeiziRecycleAdapter(Context context,List<MeiziResult> datas){
         this.context = context;
@@ -43,12 +52,22 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final int j = position;
+        SimpleTarget target = new SimpleTarget<Bitmap>() {
+
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                holder.imageView.setImageDrawable(new GlideBitmapDrawable(null,resource){
+                });
+            }
+        };
         Glide.with(this.context)
                 .load(datas.get(j).getUrl())
+                .asBitmap()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)//仅缓存原图
-                .into(holder.imageView);
+                .into(target);
+        Log.d(TAG,holder.imageView.getHeight()+"");
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
