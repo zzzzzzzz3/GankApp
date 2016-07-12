@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.nfc.Tag;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.example.msi.myapp.UI.activity.MeiziActivity;
 import com.example.msi.myapp.module.MeiziResult;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * 文 件 名: MeiziRecycleAdapter
@@ -52,22 +54,26 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final int j = position;
+
         SimpleTarget target = new SimpleTarget<Bitmap>() {
 
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                holder.imageView.setImageDrawable(new GlideBitmapDrawable(null,resource){
-                });
+                ViewGroup.LayoutParams layoutParams = holder.cardView.getLayoutParams();
+                layoutParams.height = (int) (0.5*resource.getHeight());
+                holder.cardView.setLayoutParams(layoutParams);
+                holder.imageView.setImageDrawable(new BitmapDrawable(resource));
             }
         };
+
+
         Glide.with(this.context)
                 .load(datas.get(j).getUrl())
                 .asBitmap()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)//仅缓存原图
                 .into(target);
-        Log.d(TAG,holder.imageView.getHeight()+"");
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
