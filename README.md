@@ -8,6 +8,8 @@ day five: 7-6 更改android和ios模块 调整刷新无法获取到数据的和�
 
 day six : 7-7 增加下载和删除图片
 
+day eleven : 7-12 增加了切换主题和更改妹子视图（上周复习考试所没怎么更新=。=这周把第三方登陆功能接上）
+
 ![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot0.png)![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot1.png)
 
 ![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot2.png)![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot3.png)
