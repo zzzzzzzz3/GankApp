@@ -8,10 +8,10 @@ day five: 7-6 更改android和ios模块 调整刷新无法获取到数据的和�
 
 day six : 7-7 增加下载和删除图片
 
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-07-160739.png)
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-07-160251.png)
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-07-160516.png)
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-07-160611.png)
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-07-160643.png)
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-07-161018.png)
+![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot0.png)![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot1.png)
+
+![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot2.png)![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot3.png)
+
+![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot4.png)![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot5.png)
+
 
