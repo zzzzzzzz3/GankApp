@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.msi.myapp.Interface.ShareToWB;
 import com.example.msi.myapp.R;
+import com.example.msi.myapp.UI.activity.ShareActivity;
 import com.example.msi.myapp.Utils.DateUtil;
 import com.example.msi.myapp.UI.activity.IosActivity;
 import com.example.msi.myapp.module.IosResult;
@@ -37,10 +39,12 @@ public class IosRecycleAdapter extends RecyclerView.Adapter<IosRecycleAdapter.Vi
     private static final String TAG = "AndroidRecycleAdapter";
     private List<IosResult> results;
     private Context context;
+    private ShareToWB shareToWB;
 
     public IosRecycleAdapter(Context context, List<IosResult> results){
         this.context = context;
         this.results = results;
+        this.shareToWB = (ShareToWB) context;
     }
 
     @Override
@@ -72,12 +76,8 @@ public class IosRecycleAdapter extends RecyclerView.Adapter<IosRecycleAdapter.Vi
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-                intent.putExtra(Intent.EXTRA_TEXT, results.get(position).getDesc());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(Intent.createChooser(intent, results.get(position).getId()));
+                shareToWB.share(results.get(position).getUrl(),results.get(position).getDesc());
+
             }
         });
         holder.more.setOnClickListener(new View.OnClickListener() {

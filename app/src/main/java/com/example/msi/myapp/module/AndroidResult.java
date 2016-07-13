@@ -21,6 +21,7 @@ public class AndroidResult implements Serializable{
     private String desc;
     private String url;
     private String createdAt;
+    private String type;
 
     public String getId() {
         return id;
@@ -40,6 +41,10 @@ public class AndroidResult implements Serializable{
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setCreatedAt(String createdAt) {

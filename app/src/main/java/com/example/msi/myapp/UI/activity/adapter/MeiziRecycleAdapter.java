@@ -62,7 +62,7 @@ public class MeiziRecycleAdapter extends RecyclerView.Adapter<MeiziRecycleAdapte
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                 ViewGroup.LayoutParams layoutParams = holder.cardView.getLayoutParams();
-                layoutParams.height = (int) (0.5*resource.getHeight());
+                layoutParams.height = (int) (500+resource.getHeight()/10);
                 holder.cardView.setLayoutParams(layoutParams);
                 holder.imageView.setImageDrawable(new BitmapDrawable(resource));
             }

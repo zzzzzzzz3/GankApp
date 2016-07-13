@@ -13,13 +13,13 @@
                 android:icon="@mipmap/ic_launcher"
                 android:title="删除下载的图片" />
             <item
-                android:id="@+id/navigation_item_blog"
+                android:id="@+id/navigation_item_login"
                 android:icon="@mipmap/ic_launcher"
-                android:title="blog" />
+                android:title="微博登陆" />
 
             <item
                 android:id="@+id/navigation_item_about"
                 android:icon="@mipmap/ic_launcher"
-                android:title="about" />
+                android:title="关于" />
         </group>
     </menu>
