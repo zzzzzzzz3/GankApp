@@ -13,7 +13,7 @@ day eleven : 7-12 增加了切换主题和更改妹子视图（上周复习考�
 day thirteen: 7-14 增加微博授权登录和分享干货内容到微博
 
 
-![](https://github.com/zzzzzzzz3/MyApp/blob/master/pucture/device-2016-07-14-075207.png)
+![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-14-075207.png)
 ![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-14-051855.png)
 ![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/device-2016-07-14-052414.png)
 ![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot0.png) ![](https://github.com/zzzzzzzz3/MyApp/blob/master/picture/screenshot1.png)
