@@ -28,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.activity.NewsActivity"></activity>
         <activity android:name=".UI.activity.MeiziActivity"></activity>
         <activity android:name=".UI.activity.AndroidActivity"></activity>
         <activity android:name=".UI.activity.IosActivity"></activity>
